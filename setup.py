@@ -41,7 +41,7 @@ setup(
     ],
     extras_require={
         "qr": ["qrcode"],
-        "qr-pil": ["qrcode[pil]"],
+        "qr[pil]": ["qrcode[pil]"],
     },
     entry_points={
         'console_scripts': [
