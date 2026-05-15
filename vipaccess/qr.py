@@ -25,10 +25,8 @@ def generate_qr_code(data: str, invert: bool = True) -> bool:
     # Priority 1: Try qrcode library
     try:
         import qrcode
-        qr = qrcode.QRCode(
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
-            border=1
-        )
+
+        qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_L, border=1)
         qr.add_data(data)
         qr.print_ascii(invert=invert)
         return True
@@ -37,12 +35,7 @@ def generate_qr_code(data: str, invert: bool = True) -> bool:
 
     # Priority 2: Try qrencode command line tool
     try:
-        result = subprocess.run(
-            ['qrencode', '-t', 'UTF8', data],
-            capture_output=True,
-            text=True,
-            check=True
-        )
+        result = subprocess.run(["qrencode", "-t", "UTF8", data], capture_output=True, text=True, check=True)
         print(result.stdout)
         return True
     except (subprocess.CalledProcessError, FileNotFoundError):
