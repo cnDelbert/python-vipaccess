@@ -8,11 +8,7 @@ import re
 from vipaccess.patharg import PathType
 from vipaccess.version import __version__
 from vipaccess import provision as vp
-
-try:
-    import qrcode
-except ImportError:
-    qrcode = None
+from vipaccess.qr import generate_qr_code
 
 EXCL_WRITE = 'x'
 TOKEN_MODEL_REFERENCE_PAGE = 'https://support.symantec.com/us/en/article.tech239895.html'
@@ -100,11 +96,9 @@ def provision(p, args):
             print('    oathtool    {}-c{} -b --hotp {}  # output next code (need to increment counter each time!)'''.format(d, c, otp_secret_b32))
             print('    oathtool -v {}-c{} -b --hotp {}  # ... with extra information'''.format(d, c, otp_secret_b32))
 
-        if qrcode:
+        if args.print:
             print()
-            q = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_L, border=1)
-            q.add_data(otp_uri)
-            q.print_ascii(invert=True)
+            generate_qr_code(otp_uri)
     elif otp_token['digits']==6 and otp_token['algorithm']=='sha1' and otp_token['period']==30:
         os.umask(0o077) # stoken does this too (security)
         with open(os.path.expanduser(args.dotfile), EXCL_WRITE) as dotfile:
@@ -182,11 +176,8 @@ def uri(p, args):
 
     otp_uri = vp.generate_otp_uri(d, key, args.issuer)
     print(otp_uri)
-    if qrcode:
-        print()
-        q = qrcode.QRCode()
-        q.add_data(otp_uri)
-        q.print_ascii(invert=True)
+    print()
+    generate_qr_code(otp_uri)
 
 def show(p, args):
     if args.secret:
@@ -221,7 +212,7 @@ def main():
             setattr(namespace, 'dotfile', None)
             setattr(namespace, self.dest, True if not values else values[0] if len(values)==1 else values)
 
-    also = ' and display it as a QR code' if qrcode else ''
+    also = ' and display it as a QR code'
 
     sp = p.add_subparsers(dest='cmd')
 
