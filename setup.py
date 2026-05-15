@@ -16,9 +16,9 @@ setup(
     description=("A free software implementation of Symantec's VIP Access " "application and protocol"),
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/dlenski/python-vipaccess",
+    url="https://github.com/cnDelbert/python-vipaccess",
     author="Daniel Lenski",
-    author_email="dlenski@gmail.com",
+    author_email="cnDelbert@gmail.com",
     license="Apache 2.0",
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -48,5 +48,5 @@ setup(
             "vipaccess=vipaccess.__main__:main",
         ],
     },
-    test_suite="nose2.collector.collector",
+    test_suite="tests",
 )
