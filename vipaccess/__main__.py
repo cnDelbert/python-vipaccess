@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import os, sys
 import argparse
 import oath
@@ -16,7 +14,7 @@ try:
 except ImportError:
     qrcode = None
 
-EXCL_WRITE = 'x' if sys.version_info>=(3,3) else 'wx'
+EXCL_WRITE = 'x'
 TOKEN_MODEL_REFERENCE_PAGE = 'https://support.symantec.com/us/en/article.tech239895.html'
 
 # http://stackoverflow.com/a/26379693/20789

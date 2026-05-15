@@ -11,11 +11,9 @@
 #   Unless required by applicable law or agreed to in writing, software
 #   distributed under the License is distributed on an "AS IS" BASIS,
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#   See the License for the specific language governing permissions and
-#   limitations under the License.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-
-from __future__ import print_function
 
 import base64
 import binascii
@@ -25,11 +23,7 @@ import string
 import sys
 import time
 import xml.etree.ElementTree as etree
-# Python 2/3 compatibility
-try:
-    import urllib.parse as urllib
-except ImportError:
-    import urllib
+import urllib.parse as urllib
 
 import requests
 from Crypto.Cipher import AES
