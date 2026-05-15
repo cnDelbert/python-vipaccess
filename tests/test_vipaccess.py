@@ -1,9 +1,7 @@
 """Tests for vipaccess module."""
 
 import unittest
-import os
-import tempfile
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from vipaccess import provision as vp
 from vipaccess import __main__ as vm
 

@@ -2,8 +2,6 @@
 """QR code generation with intelligent fallback."""
 
 import subprocess
-import sys
-from typing import Optional
 
 
 def generate_qr_code(data: str, invert: bool = True) -> bool:

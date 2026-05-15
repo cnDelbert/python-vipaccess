@@ -55,7 +55,7 @@ class PathType(object):
                 raise err("standard input/output (-) not allowed")
         else:
             e = os.path.exists(string)
-            if self._exists == True:
+            if self._exists:
                 if not e:
                     raise err("path does not exist: '%s'" % string)
 
@@ -73,7 +73,7 @@ class PathType(object):
                 elif not self._type(string):
                     raise err("path not valid: '%s'" % string)
             else:
-                if self._exists == False and e:
+                if self._exists is False and e:
                     raise err("path exists: '%s'" % string)
 
                 p = os.path.dirname(os.path.normpath(string)) or "."

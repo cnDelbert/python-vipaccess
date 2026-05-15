@@ -13,7 +13,10 @@ with open(version_py, "r") as fh:
 setup(
     name="python-vipaccess",
     version=version_pep,
-    description="A free software implementation of Symantec's VIP Access application and protocol",
+    description=(
+        "A free software implementation of Symantec's VIP Access "
+        "application and protocol"
+    ),
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/dlenski/python-vipaccess",

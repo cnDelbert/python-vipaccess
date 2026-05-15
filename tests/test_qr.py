@@ -3,7 +3,6 @@
 import sys
 import unittest
 from unittest.mock import patch, MagicMock
-import subprocess
 from vipaccess import qr
 from vipaccess.qr import generate_qr_code
 

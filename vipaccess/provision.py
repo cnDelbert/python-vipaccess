@@ -19,16 +19,12 @@ import base64
 import binascii
 import hashlib
 import hmac
-import string
-import sys
-import time
 import xml.etree.ElementTree as etree
 import urllib.parse as urllib
+import time
 
 import requests
 from Crypto.Cipher import AES
-from Crypto.Random import random
-import xml.etree.ElementTree as etree
 from oath import totp, hotp
 from vipaccess.version import __version__
 
@@ -38,9 +34,14 @@ VIP_ACCESS_LOGO = "https://raw.githubusercontent.com/dlenski/python-vipaccess/ma
 TEST_URL = "https://vip.symantec.com/otpCheck"
 SYNC_URL = "https://vip.symantec.com/otpSync"
 
-HMAC_KEY = b"\xdd\x0b\xa6\x92\xc3\x8a\xa3\xa9\x93\xa3\xaa\x26\x96\x8c\xd9\xc2\xaa\x2a\xa2\xcb\x23\xb7\xc2\xd2\xaa\xaf\x8f\x8f\xc9\xa0\xa9\xa1"
+HMAC_KEY = (
+    b"\xdd\x0b\xa6\x92\xc3\x8a\xa3\xa9\x93\xa3\xaa\x26\x96\x8c\xd9"
+    b"\xc2\xaa\x2a\xa2\xcb\x23\xb7\xc2\xd2\xaa\xaf\x8f\x8f\xc9\xa0\xa9\xa1"
+)
 
-TOKEN_ENCRYPTION_KEY = b"\x01\xad\x9b\xc6\x82\xa3\xaa\x93\xa9\xa3\x23\x9a\x86\xd6\xcc\xd9"
+TOKEN_ENCRYPTION_KEY = (
+    b"\x01\xad\x9b\xc6\x82\xa3\xaa\x93\xa9\xa3\x23\x9a\x86\xd6\xcc\xd9"
+)
 
 REQUEST_TEMPLATE = """<?xml version="1.0" encoding="UTF-8" ?>
 <GetSharedSecret Id="%(timestamp)d" Version="2.0"
@@ -149,7 +150,7 @@ def decrypt_key(token_iv, token_cipher):
     decrypted = decryptor.decrypt(token_cipher)
 
     # "decrypted" has PKCS#7 padding on it, so we need to remove that
-    if type(decrypted[-1]) != int:
+    if not isinstance(decrypted[-1], int):
         num_bytes = ord(decrypted[-1])
     else:
         num_bytes = decrypted[-1]
@@ -177,7 +178,7 @@ def generate_otp_uri(token, secret, issuer="VIP Access", image=VIP_ACCESS_LOGO):
     if token.get("digits", 6) != 6:  # 6 digits is the default
         data["digits"] = token["digits"]
     if token.get("algorithm", "SHA1").upper() != "SHA1":  # SHA1 is the default
-        algorithm = (token["algorithm"].upper(),)
+        data["algorithm"] = token["algorithm"].upper()
     if token.get("counter") is not None:  # HOTP
         data["counter"] = token["counter"]
         token_parameters["otp_type"] = "hotp"
@@ -215,7 +216,9 @@ def check_token(token, secret, session=requests, timestamp=None):
 
 
 def sync_token(token, secret, session=requests, timestamp=None):
-    """Sync the generated token. This will fail for a TOTP token if performed less than 2 periods after the last sync or check."""
+    """Sync the generated token. This will fail for a TOTP token if
+    performed less than 2 periods after the last sync or check.
+    """
     secret_hex = binascii.b2a_hex(secret).decode("ascii")
     if timestamp is None:
         timestamp = int(time.time())

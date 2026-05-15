@@ -1,4 +1,5 @@
-import os, sys
+import os
+import sys
 import argparse
 import oath
 import time
@@ -127,7 +128,7 @@ def check(p, args):
         d, secret = {"id": args.identity or "Unknown"}, args.secret
     else:
         with open(args.dotfile, "r") as dotfile:
-            d = dict(l.strip().split(None, 1) for l in dotfile)
+            d = dict(line.strip().split(None, 1) for line in dotfile)
         if "version" not in d:
             p.error("%s does not specify version" % args.dotfile)
         elif d["version"] != "1":
@@ -177,7 +178,7 @@ def uri(p, args):
         if not os.path.exists(args.dotfile):
             p.error("File %s does not exist." % args.dotfile)
         with open(args.dotfile, "r") as dotfile:
-            d = dict(l.strip().split(None, 1) for l in dotfile)
+            d = dict(line.strip().split(None, 1) for line in dotfile)
         if "version" not in d:
             p.error("%s does not specify version" % args.dotfile)
         elif d["version"] != "1":
@@ -204,7 +205,7 @@ def show(p, args):
         secret = args.secret
     else:
         with open(args.dotfile, "r") as dotfile:
-            d = dict(l.strip().split(None, 1) for l in dotfile)
+            d = dict(line.strip().split(None, 1) for line in dotfile)
         if "version" not in d:
             p.error("%s does not specify version" % args.dotfile)
         elif d["version"] != "1":
