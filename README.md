@@ -60,7 +60,7 @@ new token.
 Dependencies
 ------------
 
--  Python 3.3+ (recommended) or 2.7 (not recommended)
+-  Python 3.9+
 -  [`oath`](https://pypi.python.org/pypi/oath/1.4.1)
 -  [`pycryptodome`](https://pypi.python.org/pypi/pycryptodome/3.6.6)
 -  [`requests`](https://pypi.python.org/pypi/requests)
@@ -73,10 +73,8 @@ To install `pip` see the [`pip` installation documentation](https://pip.pypa.io/
 Installation
 ------------
 
-Install with [`pip3`](https://pip.pypa.io/en/stable/installing/) to automatically fetch Python
-dependencies. (Note that on most systems, `pip3` invokes the Python 3.x version, while `pip` invokes
-the Python 2.7 version; Python 2.7 is still supported, but not recommended because it's nearing
-obsolescence.)
+Install with [`pip`](https://pip.pypa.io/en/stable/installing/) to automatically fetch Python
+dependencies.
 
 ```
 # Install latest release from PyPI
