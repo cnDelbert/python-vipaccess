@@ -61,9 +61,10 @@ Dependencies
 ------------
 
 -  Python 3.9+
--  [`oath`](https://pypi.python.org/pypi/oath/1.4.1)
--  [`pycryptodome`](https://pypi.python.org/pypi/pycryptodome/3.6.6)
--  [`requests`](https://pypi.python.org/pypi/requests)
+-  [`pycryptodome`](https://pypi.python.org/pypi/pycryptodome/3.19)
+-  [`oath`](https://pypi.python.org/pypi/oath/1.4.2)
+-  [`requests`](https://pypi.python.org/pypi/requests/2.31)
+-  [`qrcode`](https://pypi.python.org/pypi/qrcode/) (optional, for QR code display)
 
 For development purposes, you can install the dependencies with `pip install -r requirements.txt` in
 the project root directory.
@@ -79,6 +80,12 @@ dependencies.
 ```
 # Install latest release from PyPI
 $ pip3 install python-vipaccess
+
+# Install with QR code support
+$ pip3 install python-vipaccess[qr]
+
+# Install with PIL-based QR code support
+$ pip3 install python-vipaccess[qr-pil]
 
 # Install latest development version from GitHub
 $ pip3 install https://github.com/dlenski/python-vipaccess/archive/HEAD.zip
@@ -152,11 +159,20 @@ expiry 2019-01-15T12:00:00.000Z
 ### Display a QR code to register your credential with mobile TOTP apps
 
 Once you generate a token with `vipaccess provision`, use `vipaccess uri` to show the `otpauth://` URI and
-[`qrencode`](https://fukuchi.org/works/qrencode/manual/index.html) to display that URI as a QR code:
+display it as a QR code:
 
 ```
-$ qrencode -t UTF8 'otpauth://totp/VIP%20Access:SYMCXXXX?secret=YYYY&issuer=Symantec&algorithm=SHA1&digits=6'
+# Install with QR code support first
+$ pip3 install python-vipaccess[qr]
+
+# Then use the uri command
+$ vipaccess uri
 ```
+
+The system will automatically:
+1. Try to use the `qrcode` Python library (if installed)
+2. Fall back to `qrencode` command line tool (if available)
+3. Display the URI as plain text (if neither is available)
 
 Scan the code into your TOTP generating app,
 like [FreeOTP](https://freeotp.github.io/) or
