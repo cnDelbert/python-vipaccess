@@ -21,11 +21,22 @@ from urllib import parse as urlparse
 from time import sleep
 from warnings import warn
 
+import requests
+
+from vipaccess.provision import (
+    generate_request,
+    get_token_from_response,
+    decrypt_key,
+    generate_otp_uri,
+    check_token,
+    sync_token,
+    VIP_ACCESS_LOGO,
+    PROVISIONING_URL,
+)
+
 # Network tests are slow and unreliable, so skip by default
 # Set RUN_NETWORK_TESTS=true to enable them
 RUN_NETWORK_TESTS = os.getenv("RUN_NETWORK_TESTS", "").lower() in ("true", "1", "yes")
-
-from vipaccess.provision import *
 
 
 def test_generate_request():
