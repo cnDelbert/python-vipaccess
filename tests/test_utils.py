@@ -34,20 +34,20 @@ def test_generate_request():
         '<GetSharedSecret Id="1412030064" Version="2.0"\n'
         '    xmlns="http://www.verisign.com/2006/08/vipservice"\n'
         '    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n'
-        '    <TokenModel>SYMC</TokenModel>\n'
-        '    <ActivationCode></ActivationCode>\n'
+        "    <TokenModel>SYMC</TokenModel>\n"
+        "    <ActivationCode></ActivationCode>\n"
         '    <OtpAlgorithm type="HMAC-SHA1-TRUNC-6DIGITS"/>\n'
-        '    <SharedSecretDeliveryMethod>HTTPS</SharedSecretDeliveryMethod>\n'
+        "    <SharedSecretDeliveryMethod>HTTPS</SharedSecretDeliveryMethod>\n"
         '    <Extension extVersion="auth" xsi:type="vip:ProvisionInfoType"\n'
         '        xmlns:vip="http://www.verisign.com/2006/08/vipservice">\n'
-        '        <AppHandle>iMac010200</AppHandle>\n'
-        '        <ClientIDType>BOARDID</ClientIDType>\n'
-        '        <ClientID>python-vipaccess-X.Y.Z</ClientID>\n'
-        '        <DistChannel>Symantec</DistChannel>\n'
-        '        <ClientTimestamp>1412030064</ClientTimestamp>\n'
-        '        <Data>MyvXiv5vU27qBbRDN2HwbVAp0n+e67QWfWhXlbPb4Q8=</Data>\n'
-        '    </Extension>\n'
-        '</GetSharedSecret>'
+        "        <AppHandle>iMac010200</AppHandle>\n"
+        "        <ClientIDType>BOARDID</ClientIDType>\n"
+        "        <ClientID>python-vipaccess-X.Y.Z</ClientID>\n"
+        "        <DistChannel>Symantec</DistChannel>\n"
+        "        <ClientTimestamp>1412030064</ClientTimestamp>\n"
+        "        <Data>MyvXiv5vU27qBbRDN2HwbVAp0n+e67QWfWhXlbPb4Q8=</Data>\n"
+        "    </Extension>\n"
+        "</GetSharedSecret>"
     )
     params = {
         "timestamp": 1412030064,
@@ -68,37 +68,37 @@ def test_get_token_from_response():
         b'<?xml version="1.0" encoding="UTF-8"?>\n'
         b'<GetSharedSecretResponse RequestId="1412030064" Version="2.0" '
         b'xmlns="http://www.verisign.com/2006/08/vipservice">\n'
-        b'  <Status>\n'
-        b'    <ReasonCode>0000</ReasonCode>\n'
-        b'    <StatusMessage>Success</StatusMessage>\n'
-        b'  </Status>\n'
-        b'  <SharedSecretDeliveryMethod>HTTPS</SharedSecretDeliveryMethod>\n'
+        b"  <Status>\n"
+        b"    <ReasonCode>0000</ReasonCode>\n"
+        b"    <StatusMessage>Success</StatusMessage>\n"
+        b"  </Status>\n"
+        b"  <SharedSecretDeliveryMethod>HTTPS</SharedSecretDeliveryMethod>\n"
         b'  <SecretContainer Version="1.0">\n'
-        b'    <EncryptionMethod>\n'
-        b'      <PBESalt>u5lgf1Ek8WA0iiIwVkjy26j6pfk=</PBESalt>\n'
-        b'      <PBEIterationCount>50</PBEIterationCount>\n'
-        b'      <IV>Fsg1KafmAX80gUEDADijHw==</IV>\n'
-        b'    </EncryptionMethod>\n'
-        b'    <Device>\n'
+        b"    <EncryptionMethod>\n"
+        b"      <PBESalt>u5lgf1Ek8WA0iiIwVkjy26j6pfk=</PBESalt>\n"
+        b"      <PBEIterationCount>50</PBEIterationCount>\n"
+        b"      <IV>Fsg1KafmAX80gUEDADijHw==</IV>\n"
+        b"    </EncryptionMethod>\n"
+        b"    <Device>\n"
         b'      <Secret type="HOTP" Id="SYMC26070843">\n'
-        b'        <Issuer>OU = ID Protection Center, O = VeriSign, Inc.</Issuer>\n'
+        b"        <Issuer>OU = ID Protection Center, O = VeriSign, Inc.</Issuer>\n"
         b'        <Usage otp="true">\n'
         b'          <AI type="HMAC-SHA1-TRUNC-6DIGITS"/>\n'
-        b'          <TimeStep>30</TimeStep>\n'
-        b'          <Time>0</Time>\n'
-        b'          <ClockDrift>4</ClockDrift>\n'
-        b'        </Usage>\n'
-        b'        <FriendlyName>OU = ID Protection Center, O = VeriSign, Inc.</FriendlyName>\n'
-        b'        <Data>\n'
-        b'          <Cipher>ILBweOCEOoMBLJARzoeUIlu0+5m6b3khZljd5dozARk=</Cipher>\n'
+        b"          <TimeStep>30</TimeStep>\n"
+        b"          <Time>0</Time>\n"
+        b"          <ClockDrift>4</ClockDrift>\n"
+        b"        </Usage>\n"
+        b"        <FriendlyName>OU = ID Protection Center, O = VeriSign, Inc.</FriendlyName>\n"
+        b"        <Data>\n"
+        b"          <Cipher>ILBweOCEOoMBLJARzoeUIlu0+5m6b3khZljd5dozARk=</Cipher>\n"
         b'          <Digest algorithm="HMAC-SHA1">MoaidW7XDzeTZJqhfRQCZEieARM=</Digest>\n'
-        b'        </Data>\n'
-        b'        <Expiry>2017-09-25T23:36:22.056Z</Expiry>\n'
-        b'      </Secret>\n'
-        b'    </Device>\n'
-        b'  </SecretContainer>\n'
-        b'  <UTCTimestamp>1412030065</UTCTimestamp>\n'
-        b'</GetSharedSecretResponse>'
+        b"        </Data>\n"
+        b"        <Expiry>2017-09-25T23:36:22.056Z</Expiry>\n"
+        b"      </Secret>\n"
+        b"    </Device>\n"
+        b"  </SecretContainer>\n"
+        b"  <UTCTimestamp>1412030065</UTCTimestamp>\n"
+        b"</GetSharedSecretResponse>"
     )
     expected_token = {
         "salt": b'\xbb\x99`\x7fQ$\xf1`4\x8a"0VH\xf2\xdb\xa8\xfa\xa5\xf9',
