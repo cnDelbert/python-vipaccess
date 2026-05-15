@@ -35,12 +35,14 @@ setup(
     keywords='development',
     packages=['vipaccess'],
     install_requires=[
-        # verify consistency with requirements.txt
-        'pycryptodome>=3.6.6',
-        'oath>=1.4.1',
-        'requests',
+        'pycryptodome>=3.19',
+        'oath>=1.4.2',
+        'requests>=2.31',
     ],
-    extras_require={"qr": ["qrcode"]},
+    extras_require={
+        "qr": ["qrcode"],
+        "qr-pil": ["qrcode[pil]"],
+    },
     entry_points={
         'console_scripts': [
             'vipaccess=vipaccess.__main__:main',
