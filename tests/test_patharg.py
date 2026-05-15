@@ -95,6 +95,7 @@ class TestPathType(unittest.TestCase):
 
     def test_custom_type_function(self):
         """Test PathType with custom type function."""
+
         def custom_validator(path):
             return path.endswith(".txt")
 
@@ -109,6 +110,7 @@ class TestPathType(unittest.TestCase):
 
     def test_custom_type_function_fails(self):
         """Test PathType with custom type function that fails."""
+
         def custom_validator(path):
             return path.endswith(".txt")
 

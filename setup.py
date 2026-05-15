@@ -19,13 +19,12 @@ setup(
     url="https://github.com/cnDelbert/python-vipaccess",
     author="Daniel Lenski",
     author_email="code@delbert.me",
-    license="Apache 2.0",
+    license="Apache-2.0",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Utilities",
-        "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
@@ -48,5 +47,4 @@ setup(
             "vipaccess=vipaccess.__main__:main",
         ],
     },
-    test_suite="tests",
 )
