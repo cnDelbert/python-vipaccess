@@ -18,7 +18,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/cnDelbert/python-vipaccess",
     author="Daniel Lenski",
-    author_email="cnDelbert@gmail.com",
+    author_email="code@delbert.me",
     license="Apache 2.0",
     classifiers=[
         "Development Status :: 4 - Beta",
