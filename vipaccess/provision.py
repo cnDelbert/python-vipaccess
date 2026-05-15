@@ -29,7 +29,7 @@ from oath import totp, hotp
 from vipaccess.version import __version__
 
 PROVISIONING_URL = "https://services.vip.symantec.com/prov"
-VIP_ACCESS_LOGO = "https://raw.githubusercontent.com/dlenski/python-vipaccess/master/vipaccess.png"
+VIP_ACCESS_LOGO = "https://raw.githubusercontent.com/cnDelbert/python-vipaccess/master/vipaccess.png"
 
 TEST_URL = "https://vip.symantec.com/otpCheck"
 SYNC_URL = "https://vip.symantec.com/otpSync"

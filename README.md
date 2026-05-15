@@ -3,7 +3,7 @@ python-vipaccess
 
 [![PyPI](https://img.shields.io/pypi/v/python-vipaccess.svg)](https://pypi.python.org/pypi/python-vipaccess)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://github.com/dlenski/python-vipaccess/workflows/test_and_release/badge.svg)](https://github.com/dlenski/python-vipaccess/actions?query=workflow%3Atest_and_release)
+[![Build Status](https://github.com/cnDelbert/python-vipaccess/workflows/test_and_release/badge.svg)](https://github.com/cnDelbert/python-vipaccess/actions?query=workflow%3Atest_and_release)
 
 Table of Contents
 =================
@@ -18,7 +18,7 @@ Table of Contents
       * [Display a QR code to register your credential with mobile TOTP apps](#display-a-qr-code-to-register-your-credential-with-mobile-totp-apps)
       * [Generating access codes using an existing credential](#generating-access-codes-using-an-existing-credential)
 
-This is a fork of [**`cyrozap/python-vipaccess`**](https://github.com/dlenski/python-vipaccess). Main differences:
+This is a fork of [**`cyrozap/python-vipaccess`**](https://github.com/cnDelbert/python-vipaccess). Main differences:
 
 - No dependency on `qrcode` or `image` libraries; you can easily use
   external tools such as [`qrencode`](https://github.com/fukuchi/libqrencode)
@@ -88,7 +88,7 @@ $ pip3 install python-vipaccess[qr]
 $ pip3 install python-vipaccess[qr-pil]
 
 # Install latest development version from GitHub
-$ pip3 install https://github.com/dlenski/python-vipaccess/archive/HEAD.zip
+$ pip3 install https://github.com/cnDelbert/python-vipaccess/archive/HEAD.zip
 ```
 
 Usage
