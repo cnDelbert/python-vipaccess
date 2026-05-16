@@ -13,6 +13,8 @@ Table of Contents
    * [Intro](#intro)
    * [Dependencies](#dependencies)
    * [Installation](#installation)
+      * [从 PyPI 安装（推荐）](#从-pypi-安装推荐)
+      * [使用 uv（开发推荐）](#使用-uv开发推荐)
    * [Usage](#usage)
       * [Provisioning a new VIP Access credential](#provisioning-a-new-vip-access-credential)
       * [Display a QR code to register your credential with mobile TOTP apps](#display-a-qr-code-to-register-your-credential-with-mobile-totp-apps)
@@ -66,30 +68,58 @@ Dependencies
 -  [`requests`](https://pypi.python.org/pypi/requests/2.31)
 -  [`qrcode`](https://pypi.python.org/pypi/qrcode/) (optional, for QR code display)
 
-For development purposes, you can install the dependencies with `pip install -r requirements.txt` in
-the project root directory.
-
-To install `pip` see the [`pip` installation documentation](https://pip.pypa.io/en/stable/installing/).
-
 Installation
 ------------
 
-Install with [`pip`](https://pip.pypa.io/en/stable/installing/) to automatically fetch Python
-dependencies.
+### 从 PyPI 安装（推荐）
 
+使用 [`pip`](https://pip.pypa.io/en/stable/installing/) 安装：
+
+```bash
+# 安装最新发布版本
+pip3 install python-vipaccess
+
+# 安装并支持 QR 码显示
+pip3 install python-vipaccess[qr]
+
+# 安装并支持 PIL QR 码
+pip3 install python-vipaccess[qr-pil]
+
+# 安装最新开发版本
+pip3 install https://github.com/cnDelbert/python-vipaccess/archive/HEAD.zip
 ```
-# Install latest release from PyPI
-$ pip3 install python-vipaccess
 
-# Install with QR code support
-$ pip3 install python-vipaccess[qr]
+### 使用 uv（开发推荐）
 
-# Install with PIL-based QR code support
-$ pip3 install python-vipaccess[qr-pil]
+[`uv`](https://docs.astral.sh/uv/) 是一个快速的 Python 包管理器，适合开发和测试。
 
-# Install latest development version from GitHub
-$ pip3 install https://github.com/cnDelbert/python-vipaccess/archive/HEAD.zip
+```bash
+# 克隆仓库
+git clone https://github.com/cnDelbert/python-vipaccess.git
+cd python-vipaccess
+
+# 创建虚拟环境并安装依赖
+uv venv
+uv pip install -e .
+
+# 运行（方式一：已安装项目）
+uv run vipaccess --help
+
+# 运行（方式二：直接运行模块，无需安装）
+uv run python -m vipaccess --help
+
+# 安装并支持 QR 码显示
+uv pip install -e ".[qr]"
 ```
+
+**uv 常用命令对照：**
+
+| pip 命令 | uv 命令 |
+|---------|--------|
+| `pip install -r requirements.txt` | `uv pip install -r requirements.txt` |
+| `pip install -e .` | `uv pip install -e .` |
+| `pip install package` | `uv pip install package` |
+| `python -m vipaccess` | `uv run python -m vipaccess` |
 
 Usage
 -----
@@ -161,12 +191,17 @@ expiry 2019-01-15T12:00:00.000Z
 Once you generate a token with `vipaccess provision`, use `vipaccess uri` to show the `otpauth://` URI and
 display it as a QR code:
 
-```
-# Install with QR code support first
-$ pip3 install python-vipaccess[qr]
+```bash
+# 安装并支持 QR 码（pip）
+pip3 install python-vipaccess[qr]
 
-# Then use the uri command
-$ vipaccess uri
+# 或使用 uv
+uv pip install ".[qr]"
+
+# 然后运行 uri 命令
+vipaccess uri
+# 或
+uv run vipaccess uri
 ```
 
 The system will automatically:
