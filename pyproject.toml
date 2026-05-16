@@ -1,3 +1,9 @@
+[project]
+name = "python-vipaccess"
+version = "0.14.2"
+description = "A free software implementation of Symantec's VIP Access application and protocol"
+requires-python = ">=3.9"
+
 [tool.black]
 line-length = 127
 target-version = ['py39']
